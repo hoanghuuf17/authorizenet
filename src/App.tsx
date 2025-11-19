@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAcceptJs } from 'react-acceptjs';
 
 const authData = {
+  // test key
   apiLoginID: '8XaQ8r8Y',
   clientKey: '8HJeXH2ne7N97A6Xp5S7tJxVex7fp7Wc8JjKQXMa4yX55XquHDCuE58G4z74zwYM',
 };
@@ -13,18 +14,17 @@ type BasicCardInfo = {
   year: string;
 };
 
-import './App.css'
 
 function App() {
     const { dispatchData, loading, error } = useAcceptJs({ authData });
-    const [cardData, setCardData] = React.useState<BasicCardInfo>({
+    const [cardData, setCardData] = useState<BasicCardInfo>({
     cardNumber: '',
     month: '',
     year: '',
     cardCode: '',
   });
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     console.log("cardData", cardData);
     // Dispatch CC data to Authorize.net and receive payment nonce for use on your server
     const response = await dispatchData({ cardData });
